@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pitch Control</title>
+  </head>
+  <body>
+    <header>
+      <h1>Pitch Control</h1>
+      <div class="scoreline">
+        <span class="team home">Home</span>
+        <span id="score">0 – 0</span>
+        <span class="team away">Away</span>
+      </div>
+      <span id="clock">00:00</span>
+    </header>
+    <main>
+      <section class="stage">
+        <canvas id="pitch" aria-label="Bird's-eye view of the pitch"></canvas>
+        <div class="controls">
+          <button id="play" aria-pressed="false">Play</button>
+          <input id="scrub" type="range" min="0" max="0" value="0" aria-label="Match timeline" />
+          <label>
+            Speed
+            <select id="speed">
+              <option value="0.25">0.25×</option>
+              <option value="0.5">0.5×</option>
+              <option value="1" selected>1×</option>
+              <option value="2">2×</option>
+              <option value="4">4×</option>
+              <option value="10">10×</option>
+            </select>
+          </label>
+          <label><input id="show-control" type="checkbox" checked /> Pitch control</label>
+          <label><input id="show-velocity" type="checkbox" checked /> Velocities</label>
+        </div>
+        <div class="statusbar">
+          <span id="possession"></span>
+          <span id="status"></span>
+          <span class="hint">Space: play/pause · ←/→: 5 s · Shift+←/→: 1 frame</span>
+        </div>
+      </section>
+      <aside>
+        <div class="aside-head">
+          <h2>Events</h2>
+          <select id="event-filter" aria-label="Event filter">
+            <option value="key" selected>Key moments</option>
+            <option value="shots">Shots</option>
+            <option value="goals">Goals</option>
+            <option value="all">All events</option>
+          </select>
+        </div>
+        <ol id="events"></ol>
+      </aside>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

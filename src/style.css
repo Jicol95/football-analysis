@@ -1,0 +1,257 @@
+:root {
+  --bg: #101512;
+  --panel: #171e19;
+  --border: #2a332d;
+  --text: #e8ece9;
+  --muted: #8d9a91;
+  --home: rgb(46, 117, 230);
+  --away: rgb(224, 66, 62);
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.4 system-ui, -apple-system, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+h1 {
+  font-size: 16px;
+  margin: 0;
+  font-weight: 650;
+}
+
+.scoreline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  font-weight: 600;
+}
+
+#score {
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.team::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+.team.home::before {
+  background: var(--home);
+}
+.team.away::before {
+  background: var(--away);
+}
+
+#clock {
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  min-width: 120px;
+  text-align: right;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+.stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+#pitch {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  display: block;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.controls label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+#scrub {
+  flex: 1;
+  min-width: 160px;
+}
+
+button,
+select {
+  font: inherit;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 10px;
+}
+
+#play {
+  min-width: 72px;
+  font-weight: 600;
+}
+
+button:hover {
+  border-color: #46524a;
+}
+
+.statusbar {
+  display: flex;
+  gap: 16px;
+  padding: 0 16px 10px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+#possession[data-team="Home"] {
+  color: var(--home);
+}
+#possession[data-team="Away"] {
+  color: var(--away);
+}
+
+.hint {
+  margin-left: auto;
+}
+
+aside {
+  width: 300px;
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.aside-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+h2 {
+  font-size: 14px;
+  margin: 0;
+}
+
+#events {
+  list-style: none;
+  margin: 0;
+  padding: 4px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+#events button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 44px 10px 1fr auto;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 6px 8px;
+  cursor: pointer;
+}
+
+#events button:hover {
+  background: var(--panel);
+}
+
+#events button.current {
+  background: var(--panel);
+  border-color: var(--border);
+}
+
+#events .t {
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+
+#events .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+#events [data-team="Home"] .dot {
+  background: var(--home);
+}
+#events [data-team="Away"] .dot {
+  background: var(--away);
+}
+
+#events small {
+  color: var(--muted);
+}
+
+#events .who {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+@media (max-width: 860px) {
+  main {
+    flex-direction: column;
+  }
+  #pitch {
+    flex: none;
+    aspect-ratio: 114 / 76;
+  }
+  aside {
+    width: auto;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    flex: 1;
+  }
+  .hint {
+    display: none;
+  }
+  header {
+    gap: 12px;
+  }
+}
